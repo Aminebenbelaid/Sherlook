@@ -1,4 +1,4 @@
-# RepoRAG
+# Sherlook
 
 A clean, modular RAG backend that ingests a local codebase or documentation folder,
 stores text chunks in ChromaDB, and answers questions about the code using retrieved context.
@@ -11,7 +11,7 @@ stores text chunks in ChromaDB, and answers questions about the code using retri
 
 ```bash
 git clone <your-repo-url>
-cd reporag
+cd Sherlook
 
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
@@ -111,7 +111,7 @@ curl -X POST http://localhost:8000/ask \
 ## Project Structure
 
 ```
-reporag/
+Sherlook/
 ├── app/
 │   ├── main.py                 # FastAPI app + /health endpoint
 │   ├── api/
@@ -142,7 +142,7 @@ reporag/
 |--------------------|---------------------------------|------------------------------------|
 | `EMBEDDING_MODEL`  | `all-MiniLM-L6-v2`             | SentenceTransformers model name    |
 | `CHROMA_PATH`      | `./chroma_db`                  | Directory for persistent ChromaDB  |
-| `CHROMA_COLLECTION`| `reporag`                      | ChromaDB collection name           |
+| `CHROMA_COLLECTION`| `Sherlook`                      | ChromaDB collection name           |
 | `TOP_K`            | `5`                             | Number of chunks retrieved per query|
 | `CHUNK_SIZE`       | `800`                           | Characters per chunk               |
 | `CHUNK_OVERLAP`    | `100`                           | Overlap between consecutive chunks |
@@ -165,7 +165,7 @@ OPENAI_MODEL=llama3
 
 ---
 
-## Extending RepoRAG
+## Extending Sherlook
 
 - **Better chunking**: swap `chunker.py` for a sentence- or AST-aware chunker.
 - **Re-ranking**: add a cross-encoder step in `retriever.py`.
