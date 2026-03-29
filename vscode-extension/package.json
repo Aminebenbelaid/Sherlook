@@ -1,0 +1,59 @@
+{
+  "name": "sherlook-vscode",
+  "displayName": "Sherlook",
+  "description": "Ask your codebase with Sherlook's RAG backend from inside VS Code.",
+  "version": "0.0.1",
+  "publisher": "sherlook",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:sherlook.askQuestion",
+    "onCommand:sherlook.ingestFolder"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sherlook.askQuestion",
+        "title": "Sherlook: Ask Codebase"
+      },
+      {
+        "command": "sherlook.ingestFolder",
+        "title": "Sherlook: Ingest Folder"
+      }
+    ],
+    "configuration": {
+      "title": "Sherlook",
+      "properties": {
+        "sherlook.apiBase": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "Base URL for the Sherlook FastAPI backend."
+        },
+        "sherlook.defaultIngestPath": {
+          "type": "string",
+          "default": "./data/my-project",
+          "description": "Default folder path passed to the /ingest endpoint."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "lint": "tsc -p ./ --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/node-fetch": "^2.6.13",
+    "@types/vscode": "^1.93.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

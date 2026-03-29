@@ -9,6 +9,8 @@ chroma_db/
 frontend/node_modules/
 frontend/dist/
 frontend/.vite/
+vscode-extension/node_modules/
+vscode-extension/out/
 
 # OS/IDE
 .DS_Store
