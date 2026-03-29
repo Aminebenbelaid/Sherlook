@@ -60,6 +60,7 @@ def ask(request: AskRequest) -> AskResponse:
             file_path=c["file_path"],
             chunk_index=c["chunk_index"],
             score=c["score"],
+            text=c.get("text", ""),
         )
         for c in chunks
     ]

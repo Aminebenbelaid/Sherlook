@@ -24,6 +24,7 @@ class SourceChunk(BaseModel):
     file_path: str
     chunk_index: int
     score: float
+    text: str
 
 
 class AskResponse(BaseModel):
