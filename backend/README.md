@@ -76,7 +76,11 @@ curl -X POST http://localhost:8000/ingest \
 }
 ```
 
-**Supported file extensions:** `.py`, `.ts`, `.tsx`, `.js`, `.jsx`, `.md`, `.txt`, `.json`, `.yaml`, `.yml`
+**Supported file extensions:** `.py`, `.ts`, `.tsx`, `.js`, `.jsx`, `.java`, `.php`, `.rb`, `.go`, `.rs`, `.cpp`, `.cc`, `.c`, `.h`, `.hpp`, `.cs`, `.swift`, `.kt`, `.kts`, `.scala`, `.dart`, `.sql`, `.html`, `.css`, `.md`, `.txt`, `.tex`, `.json`, `.xml`, `.yaml`, `.yml`, `.pdf`
+
+**Notes:**
+- PDFs are ingested via text extraction (pypdf); images or scanned PDFs with no embedded text will yield empty chunks unless OCR is added.
+- Other binaries remain unsupported; convert to text/Markdown first if needed.
 
 **Ignored folders:** `node_modules`, `.git`, `dist`, `build`, `.next`, `venv`, `__pycache__`
 

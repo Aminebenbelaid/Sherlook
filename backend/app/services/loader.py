@@ -4,7 +4,12 @@ from typing import List, Dict
 
 SUPPORTED_EXTENSIONS = {
     ".py", ".ts", ".tsx", ".js", ".jsx",
-    ".md", ".txt", ".json", ".yaml", ".yml",
+    ".java", ".php", ".rb", ".go", ".rs",
+    ".cpp", ".cc", ".c", ".h", ".hpp", ".cs",
+    ".swift", ".kt", ".kts", ".scala", ".dart",
+    ".sql", ".html", ".css",
+    ".md", ".txt", ".tex", ".json", ".xml", ".yaml", ".yml",
+    ".pdf",
 }
 
 IGNORED_DIRS = {
@@ -51,8 +56,27 @@ def load_files(folder_path: str) -> List[Dict[str, str]]:
     return results
 
 
+def _read_pdf(path: Path) -> str | None:
+    """Extract text from a PDF; return None on error or empty content."""
+    try:
+        from pypdf import PdfReader
+    except Exception:
+        return None
+
+    try:
+        reader = PdfReader(str(path))
+        pages = [page.extract_text() or "" for page in reader.pages]
+        text = "\n\n".join(pages).strip()
+        return text if text else None
+    except Exception:
+        return None
+
+
 def _read_file(path: Path) -> str | None:
-    """Read a file as UTF-8 text; return None on any decode / IO error."""
+    """Read a file as UTF-8 text (or extract PDF); return None on errors."""
+    if path.suffix.lower() == ".pdf":
+        return _read_pdf(path)
+
     try:
         return path.read_text(encoding="utf-8", errors="strict")
     except (UnicodeDecodeError, OSError):
