@@ -16,6 +16,7 @@ export interface SourceChunk {
   file_path: string;
   chunk_index: number;
   score: number;
+  text: string;
 }
 
 export interface AskResponse {

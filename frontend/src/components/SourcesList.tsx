@@ -23,6 +23,24 @@ export const SourcesList: React.FC<SourcesListProps> = ({ sources }) => {
                 <span className="badge" style={{ background: 'rgba(94, 234, 212, 0.08)' }}>Score: {source.score.toFixed(2)}</span>
               </div>
               <div style={{ fontSize: 14, lineHeight: 1.4 }}>{source.file_path}</div>
+              {source.text && (
+                <pre
+                  style={{
+                    marginTop: 8,
+                    fontSize: 12,
+                    lineHeight: 1.5,
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 8,
+                    padding: 8,
+                    maxHeight: 220,
+                    overflow: 'auto',
+                    whiteSpace: 'pre-wrap',
+                  }}
+                >
+                  {source.text}
+                </pre>
+              )}
             </article>
           ))}
         </div>

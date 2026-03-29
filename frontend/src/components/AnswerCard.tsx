@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 interface AnswerCardProps {
   answer: string;
@@ -23,7 +24,21 @@ export const AnswerCard: React.FC<AnswerCardProps> = ({ answer, onCopy }) => {
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>
-      {answer ? <div className="answer-box">{answer}</div> : <p className="muted">No answer yet. Ask a question to see results.</p>}
+      {answer ? (
+        <div className="answer-box">
+          <ReactMarkdown
+            components={{
+              a: (props) => (
+                <a {...props} target="_blank" rel="noreferrer" />
+              ),
+            }}
+          >
+            {answer}
+          </ReactMarkdown>
+        </div>
+      ) : (
+        <p className="muted">No answer yet. Ask a question to see results.</p>
+      )}
     </div>
   );
 };
